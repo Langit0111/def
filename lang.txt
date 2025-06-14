@@ -7,10 +7,10 @@ inipassword
 administrator
 testadmin
 ramaganteng
-smkn2kroya
-smkn2kroya123
-smkn2kroya1
-smkn2kroya12
+smpn2kroya
+smpn2kroya123
+smpn2kroya1
+smpn2kroya12
 Admin1
 Admin2
 Admin3
@@ -20,4 +20,4 @@ User
 User123
 administartor123
 pass123
-smkn2kroya000
+smn2kroya000
